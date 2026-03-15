@@ -1,0 +1,71 @@
+[
+    {
+        "last_updated": "2026-03-15 10:34:12.243455+07:00",
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                100.5018,
+                13.7563
+            ] // [Longitude, Latitude]
+        },
+        "name": "PTT บางใหญ่",
+        "is_open": true,
+        "availableFuels": {
+            "Premium Diesel": null,
+            "Diesel": false,
+            "B20": null,
+            "Gasohol 95 (E10)": false,
+            "Gasohol 91 (E10)": true,
+            "E20": true,
+            "Gasoline 95": null,
+            "Premium Gasohol": true,
+            "E85": true
+        }
+    },
+    {
+        "last_updated": "2026-03-15 10:34:12.243455+07:00",
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                100.5018,
+                13.7563
+            ] // [Longitude, Latitude]
+        },
+        "name": "PT บางใหญ่ 1",
+        "is_open": true,
+        "availableFuels": {
+            "Premium Diesel": null,
+            "Diesel": false,
+            "B20": null,
+            "Gasohol 95 (E10)": true,
+            "Gasohol 91 (E10)": false,
+            "E20": true,
+            "Gasoline 95": null,
+            "Premium Gasohol": null,
+            "E85": null
+        }
+    },
+    {
+        "last_updated": "2026-03-15 10:34:12.243455+07:00",
+        "location": {
+            "type": "Point",
+            "coordinates": [
+                100.5018,
+                13.7563
+            ] // [Longitude, Latitude]
+        },
+        "name": "Shell รัตนาธิเบศธิ์ 4",
+        "is_open": true,
+        "availableFuels": {
+            "Premium Diesel": true,
+            "Diesel": false,
+            "B20": null,
+            "Gasohol 95 (E10)": false,
+            "Gasohol 91 (E10)": null,
+            "E20": true,
+            "Gasoline 95": null,
+            "Premium Gasohol": true,
+            "E85": null
+        }
+    }
+]
