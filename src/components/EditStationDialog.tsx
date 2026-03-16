@@ -76,6 +76,7 @@ export default function EditStationDialog({
         availableFuels,
         turnstileToken: turnstileToken ?? undefined
       });
+      setTurnstileToken(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
