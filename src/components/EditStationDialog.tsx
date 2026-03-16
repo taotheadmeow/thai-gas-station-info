@@ -60,7 +60,7 @@ export default function EditStationDialog({
     if (!canUpdate) return;
 
     if (hasCaptcha && !turnstileToken) {
-      setError("Please complete the captcha before creating a station.");
+      setError("Please complete the captcha before updating a station.");
       return;
     }
 
@@ -176,7 +176,7 @@ export default function EditStationDialog({
           {hasCaptcha && (
                       <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
                         <div className="mb-2 text-sm font-medium text-slate-700">
-                          Verify before creating
+                          Verify before updating
                         </div>
                         <TurnstileWidget siteKey={siteKey!} onTokenChange={setTurnstileToken} />
                       </div>
@@ -196,7 +196,7 @@ export default function EditStationDialog({
 
           <button
             type="submit"
-            disabled={!canUpdate || submitting}
+            disabled={!canUpdate || submitting || (hasCaptcha && !turnstileToken)}
             className="w-full rounded-2xl bg-blue-600 px-4 py-3 font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300"
           >
             {submitting ? "Saving..." : "Update station"}

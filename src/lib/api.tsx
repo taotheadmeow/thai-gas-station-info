@@ -166,6 +166,7 @@ export function buildUpdateStationPayload(input: {
   latitude: number;
   longitude: number;
   availableFuels: Station["availableFuels"];
+  turnstileToken: string;
 }): StationUpsertPayload {
   return {
     name: input.name,
@@ -174,6 +175,7 @@ export function buildUpdateStationPayload(input: {
       type: "Point",
       coordinates: [input.longitude, input.latitude]
     },
-    availableFuels: input.availableFuels
+    availableFuels: input.availableFuels,
+    turnstileToken: input.turnstileToken
   };
 }

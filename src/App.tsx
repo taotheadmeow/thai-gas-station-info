@@ -125,6 +125,7 @@ export default function App() {
         latitude: form.latitude,
         longitude: form.longitude,
         availableFuels: form.availableFuels
+        turnstileToken: form.turnstileToken
       })
     );
 
