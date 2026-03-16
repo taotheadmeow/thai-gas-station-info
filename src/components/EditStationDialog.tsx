@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo, useEffect, useState } from "react";
 import {
   createEmptyFuelAvailability,
   FUEL_TYPES,
@@ -8,11 +8,13 @@ import { getStationPinColor, getStationPinLabel } from "../lib/station-ui";
 import type { Station, UpdateStationFormData } from "../lib/types";
 import FuelStatusSelector from "./FuelStatusSelector";
 import StationMiniMap from "./StationMiniMap";
+import TurnstileWidget from "./TurnstileWidget";
 
 type EditStationDialogProps = {
   open: boolean;
   station: Station | null;
   canUpdate: boolean;
+  siteKey?: string;
   onClose: () => void;
   onSubmit: (data: UpdateStationFormData) => Promise<void>;
 };
@@ -21,6 +23,7 @@ export default function EditStationDialog({
   open,
   station,
   canUpdate,
+  siteKey,
   onClose,
   onSubmit
 }: EditStationDialogProps) {
@@ -31,8 +34,10 @@ export default function EditStationDialog({
   const [availableFuels, setAvailableFuels] = useState<FuelAvailability>(
     createEmptyFuelAvailability()
   );
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const hasCaptcha = useMemo(() => Boolean(siteKey), [siteKey]);
 
   useEffect(() => {
     if (!station) return;
@@ -54,6 +59,11 @@ export default function EditStationDialog({
     event.preventDefault();
     if (!canUpdate) return;
 
+    if (hasCaptcha && !turnstileToken) {
+      setError("Please complete the captcha before creating a station.");
+      return;
+    }
+
     setSubmitting(true);
     setError(null);
 
@@ -63,7 +73,8 @@ export default function EditStationDialog({
         isOpen,
         latitude,
         longitude,
-        availableFuels
+        availableFuels,
+        turnstileToken: turnstileToken ?? undefined
       });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");
@@ -161,6 +172,14 @@ export default function EditStationDialog({
               />
             ))}
           </div>
+          {hasCaptcha && (
+                      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                        <div className="mb-2 text-sm font-medium text-slate-700">
+                          Verify before creating
+                        </div>
+                        <TurnstileWidget siteKey={siteKey!} onTokenChange={setTurnstileToken} />
+                      </div>
+                    )}
 
           {!canUpdate && (
             <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">

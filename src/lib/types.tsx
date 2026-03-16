@@ -54,4 +54,5 @@ export type UpdateStationFormData = {
   latitude: number;
   longitude: number;
   availableFuels: FuelAvailability;
+  turnstileToken?: string;
 };

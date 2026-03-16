@@ -252,6 +252,7 @@ export default function App() {
           open
           station={selectedStation}
           canUpdate={permissions.update}
+          siteKey={TURNSTILE_SITE_KEY}
           onClose={() => setDialogMode("view")}
           onSubmit={handleUpdate}
         />
