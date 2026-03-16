@@ -124,8 +124,8 @@ export default function App() {
         isOpen: form.isOpen,
         latitude: form.latitude,
         longitude: form.longitude,
-        availableFuels: form.availableFuels
-        turnstileToken: form.turnstileToken
+        availableFuels: form.availableFuels,
+        turnstileToken: form.turnstileToken || ''
       })
     );
 
